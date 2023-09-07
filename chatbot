@@ -1,0 +1,24 @@
+import re
+# Define predefined rules and responses
+responses = {
+    r"hello|hi|hey|hey there": "Hello! How can I assist you today?",
+    r"how are you|how's it going": "I'm just a chatbot, but thanks for asking!",
+    r"what's your name|who are you": "I'm a simple chatbot.",
+    r"bye|goodbye|see you later": "Goodbye! Have a great day!",
+    r".*": "I'm sorry, I don't understand. Can you please rephrase your question?"
+}
+# Function to match user input to predefined rules and provide responses
+def chatbot_response(user_input):
+    for pattern, response in responses.items():
+        if re.match(pattern, user_input, re.IGNORECASE):
+            return response
+    return responses[".*"]
+# Main loop to chat with the user
+print("Chatbot: Hello! How can I assist you today?")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'exit':
+        print("Chatbot: Goodbye! Have a great day!")
+        break
+    response = chatbot_response(user_input)
+    print("Chatbot:", response)
